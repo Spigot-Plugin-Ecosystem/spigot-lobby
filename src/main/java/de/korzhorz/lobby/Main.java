@@ -2,9 +2,19 @@ package de.korzhorz.lobby;
 
 import de.korzhorz.lobby.configs.ConfigFiles;
 import de.korzhorz.lobby.configs.Messages;
+import de.korzhorz.lobby.listeners.Chat;
+import de.korzhorz.lobby.listeners.EntityDamage;
+import de.korzhorz.lobby.listeners.PlayerJoin;
+import de.korzhorz.lobby.listeners.PlayerQuit;
 import de.korzhorz.lobby.util.ColorTranslator;
 import de.korzhorz.lobby.util.GitHubUpdater;
+import org.bukkit.Bukkit;
+import org.bukkit.GameRule;
+import org.bukkit.World;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public final class Main extends JavaPlugin {
     Messages messages = new Messages();
@@ -40,6 +50,45 @@ public final class Main extends JavaPlugin {
         
         this.getServer().getConsoleSender().sendMessage(ColorTranslator.translate("&7[&6Lobby&7] &aPlugin enabled &7- Version: &6v" + this.getDescription().getVersion()));
         this.getServer().getConsoleSender().sendMessage(ColorTranslator.translate("&7[&6Lobby&7] &aDeveloped by &6KorzHorz"));
+
+        // Set the ingame time to the real time
+        if(ConfigFiles.config.getBoolean("realtime")) {
+            Date currentDate = new Date();
+            int hour = Integer.parseInt(new SimpleDateFormat("HH").format(currentDate));
+            hour = ((hour - 6) % 24) * 1000;
+            int minute = Integer.parseInt(new SimpleDateFormat("mm").format(currentDate));
+            minute = (int) ((minute / 60f) * 1000);
+            int time = hour + minute;
+
+            if(!(ConfigFiles.locations.contains("spawn.world"))) {
+                return;
+            }
+
+            World world = Bukkit.getWorld(ConfigFiles.locations.getString("spawn.world"));
+
+            if(world == null) {
+                return;
+            }
+
+            world.setTime(time);
+            world.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false);
+
+            Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
+                @Override
+                public void run() {
+                    if(ConfigFiles.locations.contains("spawn.world")) {
+                        World world = Bukkit.getWorld(ConfigFiles.locations.getString("spawn.world"));
+
+                        if(world == null) {
+                            return;
+                        }
+
+                        long time = world.getTime() + 1;
+                        world.setTime(time);
+                    }
+                }
+            }, 0, 72);
+        }
     }
 
     @Override
@@ -52,6 +101,9 @@ public final class Main extends JavaPlugin {
     }
     
     public void loadEvents() {
-
+        Bukkit.getPluginManager().registerEvents(new Chat(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerJoin(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerQuit(), this);
+        Bukkit.getPluginManager().registerEvents(new EntityDamage(), this);
     }
 }
