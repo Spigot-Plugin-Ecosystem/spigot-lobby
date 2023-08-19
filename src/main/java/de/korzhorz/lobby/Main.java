@@ -1,6 +1,8 @@
 package de.korzhorz.lobby;
 
+import de.korzhorz.lobby.commands.CMD_DelWarp;
 import de.korzhorz.lobby.commands.CMD_SetLobby;
+import de.korzhorz.lobby.commands.CMD_SetWarp;
 import de.korzhorz.lobby.configs.ConfigFiles;
 import de.korzhorz.lobby.configs.Messages;
 import de.korzhorz.lobby.handlers.VisibilityHandler;
@@ -101,6 +103,8 @@ public final class Main extends JavaPlugin {
     
     public void loadCommands() {
         Objects.requireNonNull(this.getCommand("setlobby")).setExecutor(new CMD_SetLobby());
+        Objects.requireNonNull(this.getCommand("setwarp")).setExecutor(new CMD_SetWarp());
+        Objects.requireNonNull(this.getCommand("delwarp")).setExecutor(new CMD_DelWarp());
     }
     
     public void loadEvents() {

@@ -8,3 +8,11 @@ commands:
     usage: /setlobby
     aliases: [setspawn]
     permission: lobby.setup
+  setwarp:
+    description: Set a warp
+    usage: /setwarp <name> <slot> <displayname>
+    permission: lobby.setup
+  delwarp:
+    description: Delete a warp
+    usage: /delwarp <name>
+    permission: lobby.setup

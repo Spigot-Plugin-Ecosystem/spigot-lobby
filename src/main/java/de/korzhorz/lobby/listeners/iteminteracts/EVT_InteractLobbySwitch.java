@@ -28,7 +28,7 @@ public class EVT_InteractLobbySwitch implements Listener {
 
         Player player = event.getPlayer();
 
-        Inventory inventory = Bukkit.getServer().createInventory(null, 9*6, ColorTranslator.translate(ConfigFiles.items.getString("default-inventory.lobby-switch.name")));
+        Inventory inventory = Bukkit.getServer().createInventory(null, 9*5, ColorTranslator.translate(ConfigFiles.items.getString("default-inventory.lobby-switch.name")));
         player.openInventory(inventory);
 
         SoundHandler.playSound(player, "interaction");

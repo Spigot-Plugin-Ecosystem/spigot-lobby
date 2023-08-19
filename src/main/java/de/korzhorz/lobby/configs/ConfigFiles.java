@@ -44,8 +44,12 @@ public class ConfigFiles {
         messages.setDefault("commands.errors.no-permission", "&cDu hast keine Rechte um diesen Befehl auszuführen.");
         messages.setDefault("commands.errors.bad-usage", "&cBenutze: &7%usage%");
         messages.setDefault("commands.errors.save-failed", "&cDie Änderungen konnten nicht gespeichert werden.");
+        messages.setDefault("commands.errors.invalid-warp-name", "&cUngültiger Warp-Name.");
+        messages.setDefault("commands.errors.no-item-in-hand", "&cDu musst ein Item in der Hand halten, wenn du diesen Befehl ausführst.");
 
         messages.setDefault("commands.set-lobby.success", "&aDer Spawn wurde erfolgreich gesetzt.");
+        messages.setDefault("commands.set-warp.success", "&aDer Warp wurde erfolgreich gesetzt.");
+        messages.setDefault("commands.del-warp.success", "&aAlle Warps mit dem Namen &7%warp% &awurden gelöscht.");
 
         messages.save();
 
