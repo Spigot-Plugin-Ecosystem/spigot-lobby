@@ -5,6 +5,7 @@ import de.korzhorz.lobby.commands.CMD_SetLobby;
 import de.korzhorz.lobby.commands.CMD_SetWarp;
 import de.korzhorz.lobby.configs.ConfigFiles;
 import de.korzhorz.lobby.configs.Messages;
+import de.korzhorz.lobby.handlers.BungeeCordHandler;
 import de.korzhorz.lobby.handlers.VisibilityHandler;
 import de.korzhorz.lobby.listeners.*;
 import de.korzhorz.lobby.listeners.iteminteracts.EVT_InteractLobbySwitch;
@@ -23,12 +24,21 @@ import java.util.Objects;
 
 public final class Main extends JavaPlugin {
     Messages messages = new Messages();
+    public static BungeeCordHandler bungeeCordHandler = new BungeeCordHandler();
 
     @Override
     public void onEnable() {
         this.getServer().getConsoleSender().sendMessage(ColorTranslator.translate("&7[&6Lobby&7] &7Enabling"));
         
         this.getDataFolder().mkdir();
+
+        // Plugin Channels
+        this.getServer().getConsoleSender().sendMessage(ColorTranslator.translate("&7[&6Lobby&7] &7Setting up plugin channels"));
+        this.getServer().getMessenger().registerIncomingPluginChannel(this, "BungeeCord", Main.bungeeCordHandler);
+        this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
+        this.getServer().getConsoleSender().sendMessage(ColorTranslator.translate("&7[&6Lobby&7] &aPlugin channels set up"));
+
+        Main.bungeeCordHandler.getServerName();
         
         // Configuration Files
         this.getServer().getConsoleSender().sendMessage(ColorTranslator.translate("&7[&6Lobby&7] &7Loading files"));
@@ -108,15 +118,18 @@ public final class Main extends JavaPlugin {
     }
     
     public void loadEvents() {
-        Bukkit.getPluginManager().registerEvents(new EVT_PlayerChatEvent(), this);
+        Bukkit.getPluginManager().registerEvents(new EVT_PlayerLoginEvent(), this);
         Bukkit.getPluginManager().registerEvents(new EVT_PlayerJoinEvent(), this);
         Bukkit.getPluginManager().registerEvents(new EVT_PlayerQuitEvent(), this);
         Bukkit.getPluginManager().registerEvents(new EVT_EntityDamageEvent(), this);
         Bukkit.getPluginManager().registerEvents(new EVT_FoodLevelChangeEvent(), this);
+        Bukkit.getPluginManager().registerEvents(new EVT_XPEvent(), this);
         Bukkit.getPluginManager().registerEvents(new EVT_DeathEvent(), this);
         Bukkit.getPluginManager().registerEvents(new EVT_DropItemEvent(), this);
-        Bukkit.getPluginManager().registerEvents(new EVT_DropItemEvent(), this);
+        Bukkit.getPluginManager().registerEvents(new EVT_InteractEvent(), this);
         Bukkit.getPluginManager().registerEvents(new EVT_ItemHeldEvent(), this);
+
+        Bukkit.getPluginManager().registerEvents(new EVT_PlayerChatEvent(), this);
 
         Bukkit.getPluginManager().registerEvents(new EVT_InteractNavigator(), this);
         Bukkit.getPluginManager().registerEvents(new EVT_InteractLobbySwitch(), this);

@@ -1,9 +1,13 @@
 package de.korzhorz.lobby.configs;
 
 import de.korzhorz.lobby.Main;
+import de.korzhorz.lobby.util.ColorTranslator;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 
 public class ConfigFiles {
@@ -11,6 +15,7 @@ public class ConfigFiles {
     public static ConfigFile messages;
     public static ConfigFile updater;
     public static ConfigFile locations;
+    public static ConfigFile lobbies;
     public static ConfigFile items;
     
     public static void loadFiles() {
@@ -18,11 +23,14 @@ public class ConfigFiles {
         messages = new ConfigFile("messages.yml");
         updater = new ConfigFile("updater.yml");
         locations = new ConfigFile("locations.yml");
+        lobbies = new ConfigFile("lobbies.yml");
         items = new ConfigFile("items.yml");
     }
     
     public static void initFileContents() {
         // Config
+        config.setDefault("premium", false);
+
         config.setDefault("chat.permission-required", true);
         config.setDefault("chat.force-disabled", false);
 
@@ -41,6 +49,8 @@ public class ConfigFiles {
         messages.setDefault("prefix", "&6&lLobby &8»");
 
         messages.setDefault("events.setup-incomplete", "&cDas Setup der Lobby ist noch nicht abgeschlossen.");
+        messages.setDefault("events.switch-lobby", "&7Verbinde...");
+        messages.setDefault("events.premium-lobby", "&cDu hast keine Berechtigung, dieser &e&lPremium-Lobby &r&cbeizutreten.");
 
         messages.setDefault("commands.errors.no-player", "&cDu musst ein Spieler sein um diesen Befehl auszuführen.");
         messages.setDefault("commands.errors.no-permission", "&cDu hast keine Rechte um diesen Befehl auszuführen.");
@@ -64,6 +74,9 @@ public class ConfigFiles {
         // Locations
         locations.save();
 
+        // Lobbies
+        lobbies.save();
+
         // Items
         items.setDefault("default-inventory.navigator.name", "&6&lNavigator");
         items.setDefault("default-inventory.navigator.material", "COMPASS");
@@ -76,6 +89,9 @@ public class ConfigFiles {
         items.setDefault("default-inventory.toggle-visibility.visible.material", "LIME_DYE");
         items.setDefault("default-inventory.toggle-visibility.invisible.name", "&7&lAlle Spieler unsichtbar");
         items.setDefault("default-inventory.toggle-visibility.invisible.material", "GRAY_DYE");
+
+        items.setDefault("lobby-switch.default.material", "GUNPOWDER");
+        items.setDefault("lobby-switch.premium.material", "GLOWSTONE_DUST");
 
         items.save();
     }
