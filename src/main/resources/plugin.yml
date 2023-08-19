@@ -3,4 +3,8 @@ version: '${project.version}'
 main: de.korzhorz.lobby.Main
 api-version: 1.20
 commands:
-
+  setlobby:
+    description: Set the lobby
+    usage: /setlobby
+    aliases: [setspawn]
+    permission: lobby.setup

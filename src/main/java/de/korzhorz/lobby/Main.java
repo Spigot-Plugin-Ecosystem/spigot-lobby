@@ -1,11 +1,12 @@
 package de.korzhorz.lobby;
 
+import de.korzhorz.lobby.commands.CMD_SetLobby;
 import de.korzhorz.lobby.configs.ConfigFiles;
 import de.korzhorz.lobby.configs.Messages;
-import de.korzhorz.lobby.listeners.Chat;
-import de.korzhorz.lobby.listeners.EntityDamage;
-import de.korzhorz.lobby.listeners.PlayerJoin;
-import de.korzhorz.lobby.listeners.PlayerQuit;
+import de.korzhorz.lobby.listeners.EVT_PlayerChatEvent;
+import de.korzhorz.lobby.listeners.EVT_EntityDamageEvent;
+import de.korzhorz.lobby.listeners.EVT_PlayerJoinEvent;
+import de.korzhorz.lobby.listeners.EVT_PlayerQuitEvent;
 import de.korzhorz.lobby.util.ColorTranslator;
 import de.korzhorz.lobby.util.GitHubUpdater;
 import org.bukkit.Bukkit;
@@ -15,6 +16,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Objects;
 
 public final class Main extends JavaPlugin {
     Messages messages = new Messages();
@@ -97,13 +99,13 @@ public final class Main extends JavaPlugin {
     }
     
     public void loadCommands() {
-
+        Objects.requireNonNull(this.getCommand("setlobby")).setExecutor(new CMD_SetLobby());
     }
     
     public void loadEvents() {
-        Bukkit.getPluginManager().registerEvents(new Chat(), this);
-        Bukkit.getPluginManager().registerEvents(new PlayerJoin(), this);
-        Bukkit.getPluginManager().registerEvents(new PlayerQuit(), this);
-        Bukkit.getPluginManager().registerEvents(new EntityDamage(), this);
+        Bukkit.getPluginManager().registerEvents(new EVT_PlayerChatEvent(), this);
+        Bukkit.getPluginManager().registerEvents(new EVT_PlayerJoinEvent(), this);
+        Bukkit.getPluginManager().registerEvents(new EVT_PlayerQuitEvent(), this);
+        Bukkit.getPluginManager().registerEvents(new EVT_EntityDamageEvent(), this);
     }
 }
