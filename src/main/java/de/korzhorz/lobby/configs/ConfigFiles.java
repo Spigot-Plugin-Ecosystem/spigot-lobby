@@ -1,13 +1,9 @@
 package de.korzhorz.lobby.configs;
 
 import de.korzhorz.lobby.Main;
-import de.korzhorz.lobby.util.ColorTranslator;
-import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 
 public class ConfigFiles {
