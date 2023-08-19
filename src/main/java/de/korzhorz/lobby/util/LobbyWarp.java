@@ -32,7 +32,7 @@ public class LobbyWarp {
     }
 
     public String getDisplayName() {
-        return this.displayName;
+        return ColorTranslator.translate(this.displayName);
     }
 
     public Location getLocation() {

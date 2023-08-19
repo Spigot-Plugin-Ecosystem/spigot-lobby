@@ -37,8 +37,12 @@ public class CMD_DelWarp implements CommandExecutor {
         } else {
             warps = new ArrayList<>();
         }
+        warps = warps.stream()
+                .map(warp -> new LobbyWarp().fromString(warp))
+                .filter(lobbyWarp -> !(lobbyWarp.getName().equals(args[0])))
+                .map(LobbyWarp::toString)
+                .toList();
 
-        warps = warps.stream().map(warp -> new LobbyWarp().fromString(warp)).filter(lobbyWarp -> !(lobbyWarp.getName().equals(args[0]))).map(LobbyWarp::toString).toList();
         ConfigFiles.locations.set("warps", warps);
         ConfigFiles.locations.save();
 

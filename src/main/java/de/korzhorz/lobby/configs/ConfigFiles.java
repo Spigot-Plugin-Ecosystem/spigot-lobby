@@ -32,6 +32,8 @@ public class ConfigFiles {
         config.setDefault("sounds.change-slot.sound", "BLOCK_NOTE_BLOCK_IRON_XYLOPHONE");
         config.setDefault("sounds.interaction.enabled", true);
         config.setDefault("sounds.interaction.sound", "BLOCK_NOTE_BLOCK_XYLOPHONE");
+        config.setDefault("sounds.teleport.enabled", true);
+        config.setDefault("sounds.teleport.sound", "ENTITY_ENDERMAN_TELEPORT");
 
         config.save();
 
