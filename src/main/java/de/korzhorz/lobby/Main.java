@@ -3,10 +3,8 @@ package de.korzhorz.lobby;
 import de.korzhorz.lobby.commands.CMD_SetLobby;
 import de.korzhorz.lobby.configs.ConfigFiles;
 import de.korzhorz.lobby.configs.Messages;
-import de.korzhorz.lobby.listeners.EVT_PlayerChatEvent;
-import de.korzhorz.lobby.listeners.EVT_EntityDamageEvent;
-import de.korzhorz.lobby.listeners.EVT_PlayerJoinEvent;
-import de.korzhorz.lobby.listeners.EVT_PlayerQuitEvent;
+import de.korzhorz.lobby.handlers.VisibilityHandler;
+import de.korzhorz.lobby.listeners.*;
 import de.korzhorz.lobby.util.ColorTranslator;
 import de.korzhorz.lobby.util.GitHubUpdater;
 import org.bukkit.Bukkit;
@@ -95,7 +93,7 @@ public final class Main extends JavaPlugin {
 
     @Override
     public void onDisable() {
-
+        VisibilityHandler.showAll();
     }
     
     public void loadCommands() {
@@ -107,5 +105,9 @@ public final class Main extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new EVT_PlayerJoinEvent(), this);
         Bukkit.getPluginManager().registerEvents(new EVT_PlayerQuitEvent(), this);
         Bukkit.getPluginManager().registerEvents(new EVT_EntityDamageEvent(), this);
+        Bukkit.getPluginManager().registerEvents(new EVT_FoodLevelChangeEvent(), this);
+        Bukkit.getPluginManager().registerEvents(new EVT_DropItemEvent(), this);
+        Bukkit.getPluginManager().registerEvents(new EVT_DropItemEvent(), this);
+        Bukkit.getPluginManager().registerEvents(new EVT_ItemHeldEvent(), this);
     }
 }

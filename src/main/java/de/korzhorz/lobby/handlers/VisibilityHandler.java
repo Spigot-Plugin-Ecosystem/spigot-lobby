@@ -1,6 +1,7 @@
 package de.korzhorz.lobby.handlers;
 
 import de.korzhorz.lobby.Main;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -42,6 +43,12 @@ public class VisibilityHandler {
     public static void showLeavingPlayer(Player leavingPlayer) {
         for(Player player : VisibilityHandler.hidingOtherPlayers) {
             player.showPlayer(JavaPlugin.getPlugin(Main.class), leavingPlayer);
+        }
+    }
+
+    public static void showAll() {
+        for(Player player : Bukkit.getOnlinePlayers()) {
+            VisibilityHandler.setVisibilityOption(player, true);
         }
     }
 }
