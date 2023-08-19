@@ -30,6 +30,8 @@ public class ConfigFiles {
 
         config.setDefault("sounds.change-slot.enabled", true);
         config.setDefault("sounds.change-slot.sound", "BLOCK_NOTE_BLOCK_IRON_XYLOPHONE");
+        config.setDefault("sounds.interaction.enabled", true);
+        config.setDefault("sounds.interaction.sound", "BLOCK_NOTE_BLOCK_XYLOPHONE");
 
         config.save();
 
@@ -66,7 +68,7 @@ public class ConfigFiles {
         items.setDefault("default-inventory.toggle-visibility.slot", 8);
         items.setDefault("default-inventory.toggle-visibility.visible.name", "&a&lAlle Spieler sichtbar");
         items.setDefault("default-inventory.toggle-visibility.visible.material", "LIME_DYE");
-        items.setDefault("default-inventory.toggle-visibility.invisible.name", "&8&lAlle Spieler unsichtbar");
+        items.setDefault("default-inventory.toggle-visibility.invisible.name", "&7&lAlle Spieler unsichtbar");
         items.setDefault("default-inventory.toggle-visibility.invisible.material", "GRAY_DYE");
 
         items.save();

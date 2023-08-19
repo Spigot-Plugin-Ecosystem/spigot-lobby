@@ -5,6 +5,9 @@ import de.korzhorz.lobby.configs.ConfigFiles;
 import de.korzhorz.lobby.configs.Messages;
 import de.korzhorz.lobby.handlers.VisibilityHandler;
 import de.korzhorz.lobby.listeners.*;
+import de.korzhorz.lobby.listeners.iteminteracts.EVT_InteractLobbySwitch;
+import de.korzhorz.lobby.listeners.iteminteracts.EVT_InteractNavigator;
+import de.korzhorz.lobby.listeners.iteminteracts.EVT_InteractToggleVisibility;
 import de.korzhorz.lobby.util.ColorTranslator;
 import de.korzhorz.lobby.util.GitHubUpdater;
 import org.bukkit.Bukkit;
@@ -106,8 +109,13 @@ public final class Main extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new EVT_PlayerQuitEvent(), this);
         Bukkit.getPluginManager().registerEvents(new EVT_EntityDamageEvent(), this);
         Bukkit.getPluginManager().registerEvents(new EVT_FoodLevelChangeEvent(), this);
+        Bukkit.getPluginManager().registerEvents(new EVT_DeathEvent(), this);
         Bukkit.getPluginManager().registerEvents(new EVT_DropItemEvent(), this);
         Bukkit.getPluginManager().registerEvents(new EVT_DropItemEvent(), this);
         Bukkit.getPluginManager().registerEvents(new EVT_ItemHeldEvent(), this);
+
+        Bukkit.getPluginManager().registerEvents(new EVT_InteractNavigator(), this);
+        Bukkit.getPluginManager().registerEvents(new EVT_InteractLobbySwitch(), this);
+        Bukkit.getPluginManager().registerEvents(new EVT_InteractToggleVisibility(), this);
     }
 }
