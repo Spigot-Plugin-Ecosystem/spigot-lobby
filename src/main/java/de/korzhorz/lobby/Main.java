@@ -42,7 +42,6 @@ public final class Main extends JavaPlugin {
         
         // Configuration Files
         this.getServer().getConsoleSender().sendMessage(ColorTranslator.translate("&7[&6Lobby&7] &7Loading files"));
-        ConfigFiles.loadFiles();
         ConfigFiles.initFileContents();
         this.getServer().getConsoleSender().sendMessage(ColorTranslator.translate("&7[&6Lobby&7] &aFiles loaded"));
         

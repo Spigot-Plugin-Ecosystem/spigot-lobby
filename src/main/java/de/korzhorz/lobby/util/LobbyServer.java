@@ -54,7 +54,8 @@ public class LobbyServer {
         ItemStack itemStack = ItemHandler.getItem(material, this.getDisplayName(), 1);
 
         if(this.getActive()) {
-            itemStack.addUnsafeEnchantment(new GlowEnchantment(new NamespacedKey(Bukkit.getPluginManager().getPlugin("Lobby"), "glow")), 1);
+            GlowEnchantment glow = new GlowEnchantment(new NamespacedKey(Bukkit.getPluginManager().getPlugin("Lobby"), "glow"));
+            itemStack.addUnsafeEnchantment(glow, 1);
         }
 
         return itemStack;

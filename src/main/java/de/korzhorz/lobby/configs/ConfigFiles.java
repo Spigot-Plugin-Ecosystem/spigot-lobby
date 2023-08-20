@@ -7,21 +7,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class ConfigFiles {
-    public static ConfigFile config;
-    public static ConfigFile messages;
-    public static ConfigFile updater;
-    public static ConfigFile locations;
-    public static ConfigFile lobbies;
-    public static ConfigFile items;
-    
-    public static void loadFiles() {
-        config = new ConfigFile("config.yml");
-        messages = new ConfigFile("messages.yml");
-        updater = new ConfigFile("updater.yml");
-        locations = new ConfigFile("locations.yml");
-        lobbies = new ConfigFile("lobbies.yml");
-        items = new ConfigFile("items.yml");
-    }
+    public static ConfigFile config = new ConfigFile("config.yml");
+    public static ConfigFile messages = new ConfigFile("messages.yml");
+    public static ConfigFile updater = new ConfigFile("updater.yml");
+    public static ConfigFile locations = new ConfigFile("locations.yml");
+    public static ConfigFile lobbies = new ConfigFile("lobbies.yml");
+    public static ConfigFile items = new ConfigFile("items.yml");
     
     public static void initFileContents() {
         // Config
