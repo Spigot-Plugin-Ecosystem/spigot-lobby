@@ -22,27 +22,27 @@ public class CMD_SetWarp implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if(!(sender instanceof Player)) {
             sender.sendMessage(ColorTranslator.translate(messages.get("prefix") + "&r " + messages.get("commands.errors.no-player")));
-            return false;
+            return true;
         }
 
         Player player = (Player) sender;
 
         if(!(player.hasPermission("lobby.setup"))) {
             player.sendMessage(ColorTranslator.translate(messages.get("prefix") + "&r " + messages.get("commands.errors.no-permission")));
-            return false;
+            return true;
         }
 
         if(args.length < 3) {
             String message = messages.get("commands.errors.bad-usage");
             message = message.replaceAll("%usage%", cmd.getUsage());
             player.sendMessage(ColorTranslator.translate(messages.get("prefix") + "&r " + message));
-            return false;
+            return true;
         }
 
         if(args[0].contains(":")) {
             String message = messages.get("commands.errors.invalid-warp-name");
             player.sendMessage(ColorTranslator.translate(messages.get("prefix") + "&r " + message));
-            return false;
+            return true;
         }
 
         Material material = player.getInventory().getItemInMainHand().getType();
@@ -50,7 +50,7 @@ public class CMD_SetWarp implements CommandExecutor {
         if(material.isAir()) {
             String message = messages.get("commands.errors.no-item-in-hand");
             player.sendMessage(ColorTranslator.translate(messages.get("prefix") + "&r " + message));
-            return false;
+            return true;
         }
 
         StringBuilder displayName = new StringBuilder();

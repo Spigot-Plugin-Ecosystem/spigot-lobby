@@ -17,21 +17,21 @@ public class CMD_SetLobby implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if(!(sender instanceof Player)) {
             sender.sendMessage(ColorTranslator.translate(messages.get("prefix") + "&r " + messages.get("commands.errors.no-player")));
-            return false;
+            return true;
         }
 
         Player player = (Player) sender;
 
         if(!(player.hasPermission("lobby.setup"))) {
             player.sendMessage(ColorTranslator.translate(messages.get("prefix") + "&r " + messages.get("commands.errors.no-permission")));
-            return false;
+            return true;
         }
 
         if(args.length != 0) {
             String message = messages.get("commands.errors.bad-usage");
             message = message.replaceAll("%usage%", cmd.getUsage());
             player.sendMessage(ColorTranslator.translate(messages.get("prefix") + "&r " + message));
-            return false;
+            return true;
         }
 
         Location spawn = player.getLocation();

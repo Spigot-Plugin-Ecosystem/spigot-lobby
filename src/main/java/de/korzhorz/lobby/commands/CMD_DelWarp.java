@@ -18,14 +18,14 @@ public class CMD_DelWarp implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if(!(sender.hasPermission("lobby.setup"))) {
             sender.sendMessage(ColorTranslator.translate(messages.get("prefix") + "&r " + messages.get("commands.errors.no-permission")));
-            return false;
+            return true;
         }
 
         if(args.length != 1) {
             String message = messages.get("commands.errors.bad-usage");
             message = message.replaceAll("%usage%", cmd.getUsage());
             sender.sendMessage(ColorTranslator.translate(messages.get("prefix") + "&r " + message));
-            return false;
+            return true;
         }
 
         List<String> warps;
