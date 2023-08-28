@@ -44,7 +44,7 @@ public class EVT_PlayerJoinEvent implements Listener {
                 public void run() {
                     int year = Integer.parseInt(new SimpleDateFormat("yyyy").format(new Date()));
                     player.setLevel(year);
-                    player.setExp(1);
+                    player.setExp(.999999f);
                 }
             }, 1);
 
